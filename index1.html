@@ -1,0 +1,436 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Донерная Шахтинск</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@500;700;800&family=Manrope:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: уличная еда, крупные плотные заголовки Rubik, красный акцент, меню с корзиной и заказ в WhatsApp */
+:root {
+  --bg: #fbf8f4;
+  --surface: #ffffff;
+  --surface-2: #f2ece4;
+  --fg: #1c1512;
+  --muted: #6e625a;
+  --line: #e4dbd0;
+  --accent: #d9262c;
+  --accent-fg: #ffffff;
+  --accent-soft: #fde3e3;
+  --ok: #1a8a4a;
+  --warn-bg: #fff3c4;
+  --warn-fg: #5c4500;
+  --font-display: "Rubik", "Arial Black", system-ui, sans-serif;
+  --font-body: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --radius: 16px;
+  --shadow: 0 2px 4px rgba(28,21,18,.05), 0 16px 36px -16px rgba(28,21,18,.25);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #15100d;
+    --surface: #1f1814;
+    --surface-2: #2a211b;
+    --fg: #f6efe8;
+    --muted: #b5a698;
+    --line: #3a2e26;
+    --accent: #ff4a4f;
+    --accent-fg: #1a0b0b;
+    --accent-soft: #3d1d1e;
+    --ok: #4fd18a;
+    --warn-bg: #3b3210;
+    --warn-fg: #ffe9a0;
+    --shadow: 0 2px 4px rgba(0,0,0,.4), 0 18px 40px -16px rgba(0,0,0,.8);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #15100d;
+  --surface: #1f1814;
+  --surface-2: #2a211b;
+  --fg: #f6efe8;
+  --muted: #b5a698;
+  --line: #3a2e26;
+  --accent: #ff4a4f;
+  --accent-fg: #1a0b0b;
+  --accent-soft: #3d1d1e;
+  --ok: #4fd18a;
+  --warn-bg: #3b3210;
+  --warn-fg: #ffe9a0;
+  --shadow: 0 2px 4px rgba(0,0,0,.4), 0 18px 40px -16px rgba(0,0,0,.8);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  padding-block: 0;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  -webkit-font-smoothing: antialiased;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0 0 auto;
+  height: env(safe-area-inset-top, 0px);
+  background: var(--bg);
+  z-index: 40;
+}
+a { color: inherit; text-decoration: none; }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 800; line-height: 1.08; margin: 0; text-wrap: balance; letter-spacing: -0.01em; }
+p { margin: 0; }
+button { font-family: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+.wrap { max-width: 1120px; margin-inline: auto; }
+.eyebrow { font-weight: 700; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); }
+.section { padding-block: 72px; }
+.section-head { display: grid; gap: 10px; margin-bottom: 32px; max-width: 640px; }
+.section-head h2 { font-size: clamp(28px, 4.4vw, 42px); }
+.section-head p { color: var(--muted); font-size: 17px; }
+
+/* Draft note */
+.draft { margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px))); padding: 10px max(16px, env(safe-area-inset-left, 0px)); background: var(--warn-bg); color: var(--warn-fg); font-size: 13px; font-weight: 600; }
+.draft-inner { max-width: 1120px; margin-inline: auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.draft button { border: 0; background: transparent; color: inherit; font-weight: 700; cursor: pointer; text-decoration: underline; font-size: 13px; flex: none; }
+
+/* Nav */
+.nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px))); padding-inline: max(16px, env(safe-area-inset-left, 0px)); background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+.nav-inner { max-width: 1120px; margin-inline: auto; height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+.logo { font-family: var(--font-display); font-weight: 800; font-size: 20px; display: flex; align-items: center; gap: 10px; white-space: nowrap; }
+.logo-mark { width: 30px; height: 30px; border-radius: 9px; background: var(--accent); display: grid; place-items: center; color: var(--accent-fg); font-size: 16px; }
+.nav-links { display: flex; gap: 26px; font-weight: 600; font-size: 14px; color: var(--muted); }
+.nav-links a:hover { color: var(--fg); }
+.nav-actions { display: flex; gap: 8px; align-items: center; }
+.icon-btn { width: 40px; height: 40px; border-radius: 12px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); cursor: pointer; font-size: 16px; }
+.icon-btn:hover { border-color: var(--accent); }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border-radius: 12px; padding: 12px 22px; font-weight: 700; font-size: 15px; border: 1px solid transparent; cursor: pointer; transition: transform .15s ease; }
+.btn:hover { transform: translateY(-2px); }
+.btn-primary { background: var(--accent); color: var(--accent-fg); }
+.btn-ghost { border-color: var(--line); background: var(--surface); color: var(--fg); }
+.btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+/* Hero */
+.hero { padding-block: 64px 48px; display: grid; grid-template-columns: 1.15fr .85fr; gap: 48px; align-items: center; }
+.hero > * { min-width: 0; }
+.hero h1 { font-size: clamp(38px, 7vw, 76px); margin-bottom: 20px; }
+.hero h1 span { color: var(--accent); }
+.hero-lead { font-size: 19px; color: var(--muted); max-width: 520px; margin-bottom: 28px; }
+.hero-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 32px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chips span { padding: 6px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); font-size: 13px; font-weight: 600; }
+.badge-card { background: var(--accent); color: var(--accent-fg); border-radius: 28px; padding: 36px 32px; display: grid; gap: 18px; box-shadow: var(--shadow); animation: rise .7s cubic-bezier(.2,.7,.2,1) both; }
+.badge-card .big { font-family: var(--font-display); font-weight: 800; font-size: clamp(56px, 9vw, 96px); line-height: .9; }
+.badge-card .big small { display: block; font-size: 18px; font-weight: 700; letter-spacing: .02em; margin-top: 10px; }
+.badge-list { display: grid; gap: 10px; border-top: 1px solid color-mix(in srgb, var(--accent-fg) 35%, transparent); padding-top: 18px; font-weight: 700; }
+.badge-list div { display: flex; justify-content: space-between; gap: 12px; font-size: 15px; }
+.badge-list span:last-child { font-weight: 500; opacity: .92; text-align: right; }
+@keyframes rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+
+/* Menu */
+.tabs { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 6px; margin-bottom: 24px; }
+.tab { flex: none; border: 1px solid var(--line); background: var(--surface); color: var(--fg); padding: 10px 18px; border-radius: 999px; font-weight: 700; font-size: 14px; cursor: pointer; }
+.tab[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-fg); }
+.menu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.item { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; display: grid; gap: 8px; align-content: start; min-width: 0; }
+.item h3 { font-size: 18px; }
+.item p { color: var(--muted); font-size: 14px; min-height: 42px; }
+.item-foot { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 6px; }
+.price { font-family: var(--font-display); font-weight: 700; font-size: 20px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.tag { display: inline-block; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); width: fit-content; letter-spacing: .04em; text-transform: uppercase; }
+.qty { display: inline-flex; align-items: center; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+.qty button { width: 38px; height: 38px; border: 0; background: var(--surface-2); color: var(--fg); font-size: 18px; font-weight: 700; cursor: pointer; }
+.qty button:hover { background: var(--accent-soft); color: var(--accent); }
+.qty output { min-width: 34px; text-align: center; font-weight: 700; font-variant-numeric: tabular-nums; }
+.add { border: 0; background: var(--accent); color: var(--accent-fg); font-weight: 700; padding: 9px 16px; border-radius: 12px; cursor: pointer; font-size: 14px; }
+
+/* Locations */
+.loc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.loc { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 28px; display: grid; gap: 16px; align-content: start; min-width: 0; }
+.loc h3 { font-size: 24px; }
+.loc dl { margin: 0; display: grid; gap: 12px; }
+.loc dt { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.loc dd { margin: 2px 0 0; font-weight: 600; overflow-wrap: anywhere; }
+.open { color: var(--ok); }
+
+/* Why */
+.why { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.why div { padding: 24px; border-radius: var(--radius); background: var(--surface-2); min-width: 0; }
+.why b { display: block; font-family: var(--font-display); font-size: 36px; color: var(--accent); margin-bottom: 6px; }
+.why strong { display: block; margin-bottom: 4px; }
+.why span { color: var(--muted); font-size: 14px; }
+
+/* FAQ */
+.faq { display: grid; gap: 10px; max-width: 780px; }
+details { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 0 20px; }
+details[open] { border-color: var(--accent); }
+summary { cursor: pointer; padding: 16px 0; font-weight: 700; list-style: none; display: flex; justify-content: space-between; gap: 14px; }
+summary::-webkit-details-marker { display: none; }
+summary::after { content: "+"; color: var(--accent); font-size: 22px; line-height: 1; }
+details[open] summary::after { content: "–"; }
+details p { padding-bottom: 18px; color: var(--muted); }
+
+footer { border-top: 1px solid var(--line); margin-top: 40px; padding-block: 32px 40px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; color: var(--muted); font-size: 14px; }
+
+/* Cart bar */
+.cart-spacer { height: 0; }
+.cart-spacer.on { height: 96px; }
+.cart { position: fixed; left: 0; right: 0; bottom: 0; z-index: 35; padding: 12px max(16px, env(safe-area-inset-left, 0px)) calc(12px + env(safe-area-inset-bottom, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); background: color-mix(in srgb, var(--surface) 94%, transparent); backdrop-filter: blur(14px); border-top: 1px solid var(--line); box-shadow: 0 -12px 30px -18px rgba(0,0,0,.35); }
+.cart-inner { max-width: 1120px; margin-inline: auto; display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
+.cart-info { display: grid; min-width: 0; }
+.cart-info strong { font-family: var(--font-display); font-size: 20px; font-variant-numeric: tabular-nums; }
+.cart-info span { font-size: 13px; color: var(--muted); }
+.cart-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+select { font: inherit; font-size: 14px; font-weight: 600; color: var(--fg); background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 11px 12px; max-width: 100%; }
+.cart-clear { border: 0; background: transparent; color: var(--muted); text-decoration: underline; cursor: pointer; font-size: 13px; }
+
+@media (max-width: 960px) {
+  .hero { grid-template-columns: 1fr; gap: 32px; padding-block: 40px 32px; }
+  .menu-grid { grid-template-columns: 1fr 1fr; }
+  .why { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 680px) {
+  .nav-links { display: none; }
+  .section { padding-block: 52px; }
+  .menu-grid, .loc-grid, .why { grid-template-columns: 1fr; }
+  .badge-card { padding: 28px 22px; }
+  .cart-actions { width: 100%; }
+  .cart-actions select { flex: 1; }
+  .cart-spacer.on { height: 150px; }
+  .logo span.t { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .badge-card { animation: none; } .btn { transition: none; } }
+</style>
+
+<div class="draft" id="draft">
+  <div class="draft-inner">
+    <span>Черновик: название, адреса, часы, телефон и цены на странице являются примерами. Замените их в блоке CONFIG в конце файла.</span>
+    <button type="button" id="draft-close">Скрыть</button>
+  </div>
+</div>
+
+<div class="nav">
+  <div class="nav-inner">
+    <a class="logo" href="#top"><span class="logo-mark">◐</span><span class="t" id="brand-name">Донерная</span></a>
+    <nav class="nav-links" aria-label="Основная навигация">
+      <a href="#menu">Меню</a>
+      <a href="#points">Где мы</a>
+      <a href="#why">О нас</a>
+      <a href="#faq">Вопросы</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" id="theme-btn" type="button" aria-label="Сменить тему">◐</button>
+      <a class="btn btn-primary" href="#menu">Заказать</a>
+    </div>
+  </div>
+</div>
+
+<main class="wrap" id="top">
+  <section class="hero">
+    <div>
+      <span class="eyebrow">Шахтинск · две точки</span>
+      <h1 style="margin-top:14px">Горячий донер <span>сразу с шампура</span></h1>
+      <p class="hero-lead">Свежий лаваш, сочное мясо и соусы собственного рецепта. Заходите на любую из двух точек или соберите заказ на сайте и отправьте в WhatsApp.</p>
+      <div class="hero-cta">  
+        <a class="btn btn-primary" href="#menu">Выбрать блюда</a>
+        <a class="btn btn-ghost" href="#points">Как нас найти</a>
+      </div>
+      <div class="chips"><span>Готовим при вас</span><span>Самовывоз</span><span>Заказ в WhatsApp</span><span>Оплата Kaspi и наличными</span></div>
+    </div>
+    <div class="badge-card">
+      <div class="big">2<small>точки в Шахтинске</small></div>
+      <div class="badge-list" id="hero-points"></div>
+    </div>
+  </section>
+
+  <section class="section" id="menu">
+    <div class="section-head">
+      <span class="eyebrow">Меню</span>
+      <h2>Выбирайте и собирайте заказ</h2>
+      <p>Нажмите «Добавить», внизу появится сумма и кнопка отправки заказа в WhatsApp.</p>
+    </div>
+    <div class="tabs" id="tabs" role="group" aria-label="Категории меню"></div>
+    <div class="menu-grid" id="menu-grid"></div>
+  </section>
+
+  <section class="section" id="points">
+    <div class="section-head">
+      <span class="eyebrow">Где мы</span>
+      <h2>Две точки, один вкус</h2>
+      <p>Готовим по одному рецепту и одним продуктам, поэтому выбирайте ту, что ближе.</p>
+    </div>
+    <div class="loc-grid" id="loc-grid"></div>
+  </section>
+
+  <section class="section" id="why">
+    <div class="section-head">
+      <span class="eyebrow">О нас</span>
+      <h2>Почему к нам возвращаются</h2>
+    </div>
+    <div class="why">
+      <div><b>5 мин</b><strong>Быстро</strong><span>Донер готовится при вас, ждать долго не придётся.</span></div>
+      <div><b>100%</b><strong>Свежее</strong><span>Овощи и лаваш берём каждый день.</span></div>
+      <div><b>3</b><strong>Фирменных соуса</strong><span>Сырный, острый и чесночный по нашему рецепту.</span></div>
+      <div><b>2</b><strong>Удобные точки</strong><span>Рядом с «Кирпичкой» и «Крокусом».</span></div>
+    </div>
+  </section>
+
+  <section class="section" id="faq">
+    <div class="section-head">
+      <span class="eyebrow">Вопросы</span>
+      <h2>Коротко о главном</h2>
+    </div>
+    <div class="faq">
+      <details open><summary>Как сделать заказ?</summary><p>Добавьте блюда в корзину на этой странице, выберите точку и нажмите кнопку отправки. Откроется WhatsApp с готовым текстом заказа, вам останется отправить сообщение.</p></details>
+      <details><summary>Есть ли доставка?</summary><p>Условия доставки уточняйте по телефону выбранной точки. Самовывоз доступен всегда.</p></details>
+      <details><summary>Как можно оплатить?</summary><p>Наличными и переводом через Kaspi при получении заказа.</p></details>
+      <details><summary>Можно ли изменить состав донера?</summary><p>Да. Напишите в заказе, что убрать или добавить, например «без лука» или «острый соус».</p></details>
+    </div>
+  </section>
+
+  <footer>
+    <span id="foot-name">© 2026 Донерная</span>
+    <span>Шахтинск, Карагандинская область</span>
+  </footer>
+</main>
+
+<div class="cart-spacer" id="cart-spacer"></div>
+<div class="cart" id="cart" hidden>
+  <div class="cart-inner">
+    <div class="cart-info"><strong id="cart-total">0 ₸</strong><span id="cart-count">0 позиций</span></div>
+    <div class="cart-actions">
+      <button class="cart-clear" id="cart-clear" type="button">Очистить</button>
+      <select id="cart-loc" aria-label="Точка получения"></select>
+      <a class="btn btn-primary" id="cart-send" href="#" target="_blank" rel="noopener">Отправить в WhatsApp</a>
+    </div>
+  </div>
+</div>
+
+<script>
+/* CONFIG: замените данные на реальные. Это единственное место, которое нужно править. */
+var CONFIG = {
+  name: "Донерная",
+  whatsapp: "77087570181",
+  locations: [
+    { name: "У магазина «Кирпичка»", address: "Шахтинск, [точный адрес]", hours: "10:00–23:00", phone: "+7 708 757 0181" },
+    { name: "Рядом с «Крокусом»", address: "Шахтинск, [точный адрес]", hours: "10:00–23:00", phone: "+7 708 757 0181" }
+  ],
+  categories: ["Донеры", "Комбо", "Закуски", "Напитки"],
+  menu: [
+    { cat: "Донеры", name: "Донер классический", desc: "Курица, свежие овощи, фирменный соус, лаваш.", price: 1600, tag: "Хит" },
+    { cat: "Донеры", name: "Донер с говядиной", desc: "Сочная говядина, овощи, соус на выбор.", price: 1900 },
+    { cat: "Донеры", name: "Донер XL", desc: "Двойная порция мяса и больше овощей.", price: 2300 },
+    { cat: "Донеры", name: "Донер в булке", desc: "Тёплая булка вместо лаваша, мясо и овощи.", price: 1700 },
+    { cat: "Донеры", name: "Донер сырный", desc: "Курица с расплавленным сыром и сырным соусом.", price: 1800 },
+    { cat: "Донеры", name: "Донер острый", desc: "Мясо, овощи и острый соус.", price: 1700 },
+    { cat: "Комбо", name: "Комбо классик", desc: "Донер классический, картофель фри и напиток.", price: 2900, tag: "Выгодно" },
+    { cat: "Комбо", name: "Комбо XL", desc: "Донер XL, картофель фри и напиток 0,5 л.", price: 3500 },
+    { cat: "Закуски", name: "Картофель фри", desc: "Хрустящий, с солью, порция 150 г.", price: 900 },
+    { cat: "Закуски", name: "Наггетсы 6 шт", desc: "Куриные наггетсы с соусом.", price: 1100 },
+    { cat: "Закуски", name: "Соус на выбор", desc: "Сырный, острый или чесночный.", price: 200 },
+    { cat: "Напитки", name: "Айран", desc: "Холодный, 0,33 л.", price: 400 },
+    { cat: "Напитки", name: "Чай чёрный", desc: "Горячий, 0,3 л.", price: 300 },
+    { cat: "Напитки", name: "Газировка 0,5 л", desc: "Кола, фанта или спрайт.", price: 500 },
+    { cat: "Напитки", name: "Морс", desc: "Ягодный, 0,33 л.", price: 450 }
+  ]
+};
+
+(function () {
+  var root = document.documentElement;
+  var cart = {};
+  var activeCat = CONFIG.categories[0];
+
+  function fmt(n) { return n.toLocaleString('ru-RU').replace(/ /g, ' ') + ' ₸'; }
+  function el(id) { return document.getElementById(id); }
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+
+  // Бренд и точки
+  el('brand-name').textContent = CONFIG.name;
+  el('foot-name').textContent = '© 2026 ' + CONFIG.name;
+  document.title = CONFIG.name + ' Шахтинск';
+  el('hero-points').innerHTML = CONFIG.locations.map(function (l) {
+    return '<div><span>' + esc(l.name) + '</span><span>' + esc(l.hours) + '</span></div>';
+  }).join('');
+  el('loc-grid').innerHTML = CONFIG.locations.map(function (l) {
+    return '<article class="loc"><h3>' + esc(l.name) + '</h3><dl>' +
+      '<div><dt>Адрес</dt><dd>' + esc(l.address) + '</dd></div>' +
+      '<div><dt>Часы работы</dt><dd class="open">' + esc(l.hours) + ', ежедневно</dd></div>' +
+      '<div><dt>Телефон</dt><dd>' + esc(l.phone) + '</dd></div></dl>' +
+      '<a class="btn btn-ghost" href="#menu">Заказать на эту точку</a></article>';
+  }).join('');
+  el('cart-loc').innerHTML = CONFIG.locations.map(function (l, i) {
+    return '<option value="' + i + '">' + esc(l.name) + '</option>';
+  }).join('');
+
+  // Вкладки и меню
+  function renderTabs() {
+    el('tabs').innerHTML = CONFIG.categories.map(function (c) {
+      return '<button class="tab" type="button" data-cat="' + esc(c) + '" aria-pressed="' + (c === activeCat) + '">' + esc(c) + '</button>';
+    }).join('');
+  }
+  function renderMenu() {
+    var items = CONFIG.menu.map(function (m, i) { m.id = i; return m; }).filter(function (m) { return m.cat === activeCat; });
+    el('menu-grid').innerHTML = items.map(function (m) {
+      var q = cart[m.id] || 0;
+      var control = q > 0
+        ? '<div class="qty"><button type="button" data-act="dec" data-id="' + m.id + '" aria-label="Убрать одну">−</button><output>' + q + '</output><button type="button" data-act="inc" data-id="' + m.id + '" aria-label="Добавить ещё">+</button></div>'
+        : '<button class="add" type="button" data-act="inc" data-id="' + m.id + '">Добавить</button>';
+      return '<article class="item">' + (m.tag ? '<span class="tag">' + esc(m.tag) + '</span>' : '') +
+        '<h3>' + esc(m.name) + '</h3><p>' + esc(m.desc) + '</p>' +
+        '<div class="item-foot"><span class="price">' + fmt(m.price) + '</span>' + control + '</div></article>';
+    }).join('');
+  }
+
+  // Корзина
+  function renderCart() {
+    var total = 0, count = 0, lines = [];
+    CONFIG.menu.forEach(function (m) {
+      var q = cart[m.id] || 0;
+      if (q > 0) { total += q * m.price; count += q; lines.push(q + ' × ' + m.name + ' — ' + fmt(q * m.price)); }
+    });
+    var on = count > 0;
+    el('cart').hidden = !on;
+    el('cart-spacer').className = 'cart-spacer' + (on ? ' on' : '');
+    el('cart-total').textContent = fmt(total);
+    el('cart-count').textContent = count + ' ' + (count % 10 === 1 && count % 100 !== 11 ? 'позиция' : (count % 10 >= 2 && count % 10 <= 4 && (count % 100 < 10 || count % 100 >= 20) ? 'позиции' : 'позиций'));
+    var loc = CONFIG.locations[+el('cart-loc').value] || CONFIG.locations[0];
+    var text = 'Здравствуйте! Хочу сделать заказ (' + loc.name + '):\n' + lines.join('\n') + '\nИтого: ' + fmt(total) + '\nСамовывоз.';
+    el('cart-send').href = 'https://wa.me/' + CONFIG.whatsapp + '?text=' + encodeURIComponent(text);
+  }
+
+  el('tabs').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-cat]');
+    if (!b) return;
+    activeCat = b.getAttribute('data-cat');
+    renderTabs(); renderMenu();
+  });
+  el('menu-grid').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-act]');
+    if (!b) return;
+    var id = +b.getAttribute('data-id');
+    cart[id] = Math.max(0, (cart[id] || 0) + (b.getAttribute('data-act') === 'inc' ? 1 : -1));
+    renderMenu(); renderCart();
+  });
+  el('cart-loc').addEventListener('change', renderCart);
+  el('cart-clear').addEventListener('click', function () { cart = {}; renderMenu(); renderCart(); });
+
+  // Тема и заметка-черновик
+  el('theme-btn').addEventListener('click', function () {
+    var cur = root.getAttribute('data-theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    var next = cur === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('doner-theme', next); } catch (e) {}
+  });
+  try {
+    var saved = localStorage.getItem('doner-theme');
+    if (saved === 'dark' || saved === 'light') root.setAttribute('data-theme', saved);
+  } catch (e) {}
+  el('draft-close').addEventListener('click', function () { el('draft').hidden = true; });
+
+  renderTabs(); renderMenu(); renderCart();
+})();
+</script>
+
+</body></html>
